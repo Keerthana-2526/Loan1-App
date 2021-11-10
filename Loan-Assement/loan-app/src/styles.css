@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
+/* for toast importing */
+@import "~ngx-toastr/toastr";
+
+body {
+  color: #000;
+  overflow-x: hidden;
+  height: 100%;
+  background-color: #b0bec5;
+  background-repeat: no-repeat;
+  margin-bottom: 60px;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+a {
+  text-decoration: underline;
+  color: #ff39c2 !important;
+
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

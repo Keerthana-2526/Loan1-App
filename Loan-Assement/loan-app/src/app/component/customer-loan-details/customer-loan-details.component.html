@@ -1,0 +1,49 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div class="card m-3" *ngIf="!spin">
+  <h5 class="card-header text-center" > Loan Details</h5>
+  <div class="card-body">
+   
+    <table class="table table-striped">
+
+<thead>
+  <tr>
+    <th scope="col">No</th>
+    <th scope="col">Loan ID</th>
+    <th scope="col">Loan Amount</th>
+    <th scope="col">Start Date</th>
+    <th scope="col">Maturity Date</th>
+    <th scope="col">Loan Duration (in years)</th>
+    <th scope="col">Payment Frequency</th>
+    <th scope="col">Payment Schedule</th>
+    <th scope="col">Payment Term</th>
+    <th scope="col">Projected Interest</th>
+    <th scope="col">Loan Status</th>
+
+  </tr>
+</thead>
+
+
+<tbody >
+  
+  <tr *ngFor="let loan of loans; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{ loan.loanId }}</td>
+    <td>{{ loan.loanAmount | number }}</td>
+    <td>{{ loan.startDate }}</td>
+    <td>{{ loan.maturityDate }}</td>
+    <td>{{ loan.loanDuration | number }}</td>
+    <td>{{ loan.paymentFrequency }}</td>
+    <td>{{ loan.paymentSchedule | number }}</td>
+    <td>{{ loan.paymentTerm }}</td>
+    <td>{{ loan.projectedInterest | number }}</td>
+    <td *ngIf="loan.payment"><span class="badge bg-success">Approved</span></td>
+    <td *ngIf="!loan.payment"><span class="badge bg-info">Waiting</span></td>
+    <td *ngIf="loan.payment">
+      <button class="btn btn-primary mt-auto btn-sm" (click)=navigatePaymentSchedule(loan.loanId)>Pay</button>
+    </td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+</div>

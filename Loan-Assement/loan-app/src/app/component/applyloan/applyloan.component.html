@@ -1,0 +1,132 @@
+
+  <div class="card" style="width: 60rem;">
+  <h5 class="card-header text-center">Apply New Loan</h5>
+  <div class="card-body" style="width: 50rem;">
+        <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label>Customer ID:</label>
+                <input type="text" formControlName="customerId" class="form-control" />
+            </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label>Loan Amount:</label>
+                <input type="text" (keypress)="keyPressNumbers($event)" formControlName="loanAmount" class="form-control" />
+                <div *ngIf="submitted && f.loanAmount.errors">
+                    <div *ngIf="f.loanAmount.errors.required" class="error-style">Loan Amount is required</div>
+                    <div *ngIf="f.loanAmount.errors.max || f.loanAmount.errors.min" class="error-style">Entered value within the range(1000-10000000)</div>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label>Trade Date:</label>
+                <input type="date" formControlName="tradeDate"  class="form-control" min={{minDate}} />
+                <div *ngIf="submitted && f.tradeDate.errors">
+                    <div *ngIf="f.tradeDate.errors.required" class="error-style">Trade Date is required</div>
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label>Start Date:</label>
+                <input type="date" formControlName="startDate" class="form-control" min={{maxDate}}  />
+                <div *ngIf="submitted && f.startDate.errors">
+                    <div *ngIf="f.startDate.errors.required" class="error-style">Start Date is required</div>
+                </div>
+            </div>
+              </div>
+              <div class="col-sm">
+
+
+                <label>Loan Duration in Years:</label>
+                <div class="form-group">
+                    <input type="number"  name="loanDuration" id="loanDurationInputId" class="form-control" formControlName="loanDuration" value="0" min="0" max="30"
+                        oninput="durationOutputId.value = loanDurationInputId.value" (change)="setMaturityDate($event)">
+
+                    <div *ngIf="submitted && f.loanDuration.errors">
+                        <div *ngIf="f.loanDuration.errors.required" class="error-style">Select Loan Duration</div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-sm">
+                  <div class="form-group">
+                    <label>Maturity Date:</label>
+                    <input type="date" formControlName="maturityDate" class="form-control" />
+                </div>
+
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+
+                  <div class="form-group">
+                    <label>Interest Rate(in %):</label>
+                    <input type="text" (keypress)="keyPressNumbers($event)" formControlName="interestRate" class="form-control" />
+                </div>
+                  </div>
+                  <div class="col-sm mb-3">
+                    <div class="form-group">
+                      <label> Payment Frequency:</label>
+                      <br>
+                      <select formControlName="paymentFrequency" class="custom-select" (change)="calculatepaymentSchedule($event)" >
+                        <option value="" disabled selected>Select your option</option>
+                        <option value="Monthly" >Monthly</option>
+                        <option value="Quarterly" >Quarterly</option>
+                        <option value="Half Yearly" >Half Yearly</option>
+                        <option value="Yearly" >Yearly</option>
+                     </select>
+                      <div *ngIf="submitted && f.paymentFrequency.errors">
+                          <div *ngIf="f.paymentFrequency.errors.required" class="error-style">Payment Frequency is required</div>
+                      </div>
+                  </div>
+                  </div>
+        
+                  <div class="col-sm " >
+
+                    <div class="form-group ">
+                      <label>Payment Schedule:</label>
+                      <input type="text" (keypress)="keyPressNumbers($event)" formControlName="paymentSchedule" class="form-control" />
+                  </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm  mb-3">
+                      <div class="form-group">
+                        <label>Payment Term:</label>
+                        <br>
+                        <select formControlName="paymentTerm" class="custom-select" (change)="calculateprojectedInterest($event)">
+                          <option value="" disabled selected>Select your option</option>
+                          <option value="Interest Only">Interest Only</option>
+                          <option value="Even Principal">Even Principal</option>
+                        </select>
+                        <div *ngIf="submitted && f.paymentTerm.errors">
+                            <div *ngIf="f.paymentTerm.errors.required" class="error-style">Payment Term is required</div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm">
+
+                      <div class="form-group">
+                        <label>Projected interest :</label>
+                        <input type="text" (keypress)="keyPressNumbers($event)" formControlName="projectedInterest" class="form-control" />
+                    </div>
+  
+                    </div>
+                  </div>
+            <div class="form-group  text-center">
+                <button class="btn btn-primary text-center"  style="margin: 8px;">Apply</button>
+            </div>
+            <div #alert class="alert alert-success alert-dismissible fade" role="alert">
+                <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Your Loan has been successfully applied!
+              </div>
+        </form>
+    </div>
+</div>

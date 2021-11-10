@@ -1,0 +1,30 @@
+
+<div class="card" style="width: 100em;">
+
+  <div class="card-body" style="width: 25rem;">
+    <div class="login-page">
+      <div class="form">
+        <div class="login">
+          <div class="login-header">
+            <h3>LOGIN</h3>
+            <p>Please enter your credentials to login.</p>
+          </div>
+        </div>
+        <form #loginForm="ngForm" (ngSubmit)="onFormSubmit(loginForm)">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" name='username' required="required" ngModel>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name='password' type="password" required="required" ngModel>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid" >Log in   <i class="fa fa-spinner fa-spin" *ngIf="loading"> </i></button>
+          </div>
+
+          <p class="message">Not registered? <a (click)="gotosignup()">Create an account</a></p>
+        </form>
+      </div>
+    </div>
+    </div>
+</div>
+

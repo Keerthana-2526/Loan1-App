@@ -1,0 +1,36 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div class="card m-3" *ngIf="!spin">
+    <h5 class="card-header text-center">Payment Schedule</h5>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Payment Date</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Projected Interest</th>
+            <th scope="col">Payment Status</th>
+            <th scope="col">Payment Amount</th>
+            <th scope="col">Pay</th>
+          </tr>
+        </thead>
+       
+        <tbody >
+          <tr *ngFor="let payment of payments; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td style="display:none;">{{ payment.paymentId}}</td>
+            <td>{{ payment.paymentDate }}</td>
+            <td>{{ payment.principal | number }}</td>
+            <td>{{ payment.projectedInterest | number }}</td>
+            <td>
+              <span [ngClass]="getClass(payment.paymentStatus)">{{ payment.paymentStatus}}</span>
+            </td>
+            <td>{{ payment.paymentAmount | number }}</td>
+            <td   >
+              <button class="btn btn-primary" (click)="changePaymentStatus($event,payment.paymentId)">Pay</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

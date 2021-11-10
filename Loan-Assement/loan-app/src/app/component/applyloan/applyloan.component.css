@@ -1,0 +1,13 @@
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 2px; /* Added */
+}
+.card-body {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+.card-header {
+  font-size: 18px;
+}
